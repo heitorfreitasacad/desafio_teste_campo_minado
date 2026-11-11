@@ -1,10 +1,12 @@
 {
   "name": "desafio_teste_campo_minado",
   "version": "1.0.0",
-  "description": "Casos de teste em JavaScript para um campo minado 18 x 14 com 40 bombas",
-  "type": "module",
+  "description": "Casos de teste em JavaScript (Jest) para um campo minado 18 x 14 com 40 bombas",
   "scripts": {
-    "test": "node --test"
+    "test": "jest"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
