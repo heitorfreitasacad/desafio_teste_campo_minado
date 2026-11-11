@@ -1,6 +1,6 @@
 # desafio_teste_campo_minado
 
-Casos de teste em JavaScript para testar um **Campo Minado** em JavaScript.
+Casos de teste em JavaScript (Jest) para testar um **Campo Minado** em JavaScript.
 
 Este repositório tem **só os testes**. O jogo deve ser implementado a partir da especificação abaixo e precisa passar em todos os casos de teste.
 
@@ -27,14 +27,16 @@ Campo minado com tabuleiro de **18 colunas x 14 linhas** (252 células) e **40 b
 
 ### Contrato da implementação
 
-Os testes importam o jogo de **`src/campoMinado.js`**, como módulo ES (o `package.json` usa `"type": "module"`). O arquivo deve exportar:
+Os testes importam o jogo de **`src/campoMinado.js`** com `require('../src/campoMinado')`. O arquivo deve usar CommonJS e exportar:
 
 ```js
-export const COLUNAS = 18;
-export const LINHAS = 14;
-export const BOMBAS = 40;
-export const ESTADO = { JOGANDO: 'jogando', VITORIA: 'vitoria', DERROTA: 'derrota' };
-export class CampoMinado { ... }
+const COLUNAS = 18;
+const LINHAS = 14;
+const BOMBAS = 40;
+const ESTADO = { JOGANDO: 'jogando', VITORIA: 'vitoria', DERROTA: 'derrota' };
+class CampoMinado { ... }
+
+module.exports = { CampoMinado, ESTADO, LINHAS, COLUNAS, BOMBAS };
 ```
 
 #### `new CampoMinado(opcoes?)`
@@ -82,11 +84,15 @@ Símbolos de `paraTexto()`:
 
 ## Casos de teste
 
-Os testes usam o executor nativo do Node (`node:test` + `node:assert`). Não há dependências para instalar.
+Os testes usam o [Jest](https://jestjs.io/) (`describe`, `it` e `expect`).
 
 ### Como rodar
 
-Requer Node.js 18 ou mais recente. Com a implementação em `src/campoMinado.js`, rode:
+Requer Node.js 18 ou mais recente. Com a implementação em `src/campoMinado.js`, instale as dependências e rode os testes:
+
+```bash
+npm install
+```
 
 ```bash
 npm test
@@ -111,4 +117,4 @@ Para o sorteio, os testes usam um gerador com semente (mulberry32), então os re
 | Fim de jogo | derrota, vitória com um clique, vitória com várias jogadas, nada muda depois do fim |
 | Representação em texto | símbolos `#`, `F`, `*` e números |
 
-São 33 casos de teste. Uma implementação correta deve terminar com `pass 33 | fail 0`.
+São 33 casos de teste. Uma implementação correta deve terminar com `Tests: 33 passed, 33 total`.
